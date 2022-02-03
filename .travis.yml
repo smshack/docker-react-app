@@ -1,0 +1,24 @@
+# 관리자 권한 갖기
+sudo: required
+
+# 언어플랫폼 선택
+language: generic
+
+# 도커 환경 구성
+
+services:
+  - docker
+
+# 스크립트를 실행할 ㅅ수 있는 환경 구성
+before_install:
+  - echo "start Creating an image with dockerfile"
+  - docker build -t smshack/docker-react_app:/ver_1 -f Dockerfile.dev .
+
+# 실행할 스크립트(테스트)
+script:
+  - docker run -e CI=true smshack/docker-react_app:/ver_1 npm runt test -- --coverage
+
+
+# 테스트 성공 후 할일
+after_success:
+  - ehco "Test Success"
