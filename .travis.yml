@@ -9,7 +9,7 @@ language: generic
 services:
   - docker
 
-# 스크립트를 실행할 ㅅ수 있는 환경 구성
+# 스크립트를 실행할 수 있는 환경 구성
 before_install:
   - echo "start Creating an image with dockerfile"
   - docker build -t smshack/docker-react-app -f Dockerfile.dev .
@@ -18,7 +18,17 @@ before_install:
 script:
   - docker run -e CI=true smshack/docker-react-app npm run test -- --coverage
 
-
-# 테스트 성공 후 할일
-after_success:
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-app"
+  env: "Dockerreactapp-env"
+  bucket_name: "elasticbeanstalk-us-east-1-416736723029"
+  bucket_path: "elasticbeanstalk-us-east-1-416736723029"
+  on:
+    branch: master
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key:$AWS_SECRET_ASSESS_KEY
+# # 테스트 성공 후 할일
+after_success: 
   - ehco "Test Success confirm"
