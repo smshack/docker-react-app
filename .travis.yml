@@ -27,8 +27,8 @@ deploy:
   bucket_path: "elasticbeanstalk-us-east-1-416736723029"
   on:
     branch: master
-access_key_id: $AWS_ACCESS_KEY
-secret_access_key:$AWS_SECRET_ASSESS_KEY
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ASSESS_KEY
 # # 테스트 성공 후 할일
 after_success: 
   - ehco "Test Success confirm"
