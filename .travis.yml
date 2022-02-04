@@ -16,7 +16,7 @@ before_install:
 
 # 실행할 스크립트(테스트)
 script:
-  - docker run -e CI=true smshack/docker-react-app npm run build -- --coverage
+  - docker run -e CI=true smshack/docker-react-app npm run test -- --coverage
 
 deploy:
   provider: elasticbeanstalk
